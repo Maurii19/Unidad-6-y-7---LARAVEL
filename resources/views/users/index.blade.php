@@ -29,7 +29,7 @@
    <th>Roles</th>
    <th width="280px">Acciones</th>
  </tr>
- @foreach ($data as $user)
+ @foreach ($users as $user)
   <tr>
     <td>{{ ++$i }}</td>
     <td>{{ $user->name }}</td>
@@ -42,10 +42,10 @@
       @endif
     </td>
     <td>
-       <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Ver</a>
+       <a class="btn btn-primary" href="{{ route('users.show',$user->id) }}">Ver</a>
        <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Editar</a>
         {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
-            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+            {!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}
         {!! Form::close() !!}
     </td>
   </tr>
@@ -60,7 +60,7 @@
          {{'No hay cookie'}}
      @endif
 
-{!! $data->render() !!}
+{!! $users->render() !!}
 
 
 @endsection

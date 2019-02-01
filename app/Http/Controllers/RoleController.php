@@ -17,10 +17,10 @@ class RoleController extends Controller
      */
     function __construct()
     {
-         $this->middleware('permission:role-list');
-         $this->middleware('permission:role-create', ['only' => ['create','store']]);
-         $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:role-delete', ['only' => ['destroy']]);
+         $this->middleware('permission:Listar rol');
+         $this->middleware('permission:Crear rol', ['only' => ['create','store']]);
+         $this->middleware('permission:Editar rol', ['only' => ['edit','update']]);
+         $this->middleware('permission:Eliminar rol', ['only' => ['destroy']]);
     }
 
 
@@ -60,6 +60,12 @@ class RoleController extends Controller
         $this->validate($request, [
             'name' => 'required|unique:roles,name',
             'permission' => 'required',
+        ],
+        [
+            'name.required' => 'Introduce el nombre del rol',
+            'name.unique' => 'EL rol introducido ya existe',
+            'permission.required' => 'Selecciona al menos un permiso'
+
         ]);
 
 
@@ -119,6 +125,12 @@ class RoleController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'permission' => 'required',
+        ],
+        [
+            'name.required' => 'Introduce el nombre del rol',
+            'name.unique' => 'EL rol introducido ya existe',
+            'permission.required' => 'Selecciona al menos un permiso'
+
         ]);
 
 

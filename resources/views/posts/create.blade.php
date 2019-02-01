@@ -8,7 +8,7 @@
                 <h2>Crear nuevo post</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('posts.index') }}"> Inicio</a>
+                <a class="btn btn-primary" href="{{ route('posts.index') }}"> Volver atras!</a>
             </div>
         </div>
     </div>

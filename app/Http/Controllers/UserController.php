@@ -23,17 +23,18 @@ class UserController extends Controller
      */
     function __construct()
     {
-         $this->middleware('permission:user-list');
-         $this->middleware('permission:user-create', ['only' => ['create','store']]);
-         $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+         $this->middleware('permission:Listar usuario');
+         $this->middleware('permission:Crear usuario', ['only' => ['create','store']]);
+         $this->middleware('permission:Editar usuario', ['only' => ['edit','update']]);
+         $this->middleware('permission:Eliminar usuario', ['only' => ['destroy']]);
     }
 
     public function index(Request $request)
     {
-        $data = User::orderBy('id','DESC')->paginate(5);
+        $users = User::orderBy('id','DESC')->paginate(5);
         $userName = cookie('userName',Auth::user()->name, 6);
-        return response(view('users.index',compact('data'))->with('i', ($request->input('page', 1) - 1) * 5))->cookie($userName);
+        $request->session()->put('id', Auth::user()->id);
+        return response(view('users.index',compact('users'))->with('i', ($request->input('page', 1) - 1) * 5))->cookie($userName);
             
     }
 
@@ -61,6 +62,17 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
+        ],[
+            'name.required' => 'Introduce un nombre.',
+            'email.required' => 'Introduce un email.',
+            'email.email' => 'Introduce un email valido.',
+            'email.unique' => 'El email ya existe.',
+            'password.required' => 'Introduce una contraseña',
+            'password.same' => 'Las contraseñas no coinciden',
+            'roles.required' => 'Elige uno o varios roles'
+
+
+
         ]);
 
 
@@ -118,6 +130,16 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
             'roles' => 'required'
+        ],
+        [
+
+            'name.required' => 'Introduce un nombre.',
+            'email.required' => 'Introduce un email.',
+            'email.email' => 'Introduce un email valido.',
+            'email.unique' => 'El email ya existe.',
+            'password.required' => 'Introduce una contraseña',
+            'password.same' => 'Las contraseñas no coinciden',
+            'roles.required' => 'Elige uno o varios roles'
         ]);
 
 

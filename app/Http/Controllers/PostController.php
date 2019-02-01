@@ -14,10 +14,10 @@ class PostController extends Controller
      */
     function __construct()
     {
-         $this->middleware('permission:post-list');
-         $this->middleware('permission:post-create', ['only' => ['create','store']]);
-         $this->middleware('permission:post-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:post-delete', ['only' => ['destroy']]);
+         $this->middleware('permission:Listar post');
+         $this->middleware('permission:Crear post', ['only' => ['create','store']]);
+         $this->middleware('permission:Editar post', ['only' => ['edit','update']]);
+         $this->middleware('permission:Eliminar post', ['only' => ['destroy']]);
     }
 
     /**
@@ -53,6 +53,11 @@ class PostController extends Controller
         request()->validate([
             'title' => 'required',
             'body' => 'required',
+        ],
+        [
+            'title.required' => 'Introduce el titulo',
+            'body.required' => 'Introduce el cuerpo del post'
+
         ]);
 
 
@@ -97,6 +102,11 @@ class PostController extends Controller
         request()->validate([
             'title' => 'required',
             'body' => 'required',
+        ],
+        [
+            'title.required' => 'Introduce el titulo',
+            'body.required' => 'Introduce el cuerpo del post'
+
         ]);
 
 

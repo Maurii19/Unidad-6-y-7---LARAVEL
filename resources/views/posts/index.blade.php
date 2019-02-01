@@ -8,7 +8,7 @@
                 <h2>Posts</h2>
             </div>
             <div class="pull-right">
-                @can('post-create')
+                @can('Crear post')
                 <a class="btn btn-success" href="{{ route('posts.create') }}"> Crear nuevo post.</a>
                 @endcan
             </div>
@@ -37,15 +37,15 @@
 	        <td>{{ $post->body }}</td>
 	        <td>
                 <form action="{{ route('posts.destroy',$post->id) }}" method="POST">
-                    <a class="btn btn-info" href="{{ route('posts.show',$post->id) }}">Ver</a>
-                    @can('post-edit')
+                    <a class="btn btn-primary" href="{{ route('posts.show',$post->id) }}">Ver</a>
+                    @can('Editar post')
                     <a class="btn btn-primary" href="{{ route('posts.edit',$post->id) }}">Editar</a>
                     @endcan
 
 
                     @csrf
                     @method('DELETE')
-                    @can('post-delete')
+                    @can('Eliminar post')
                     <button type="submit" class="btn btn-danger">Delete</button>
                     @endcan
                 </form>

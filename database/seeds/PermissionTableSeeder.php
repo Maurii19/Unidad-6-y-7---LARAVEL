@@ -16,18 +16,18 @@ class PermissionTableSeeder extends Seeder
     public function run()
     {
         $permissions = [
-            'role-list',
-            'role-create',
-            'role-edit',
-            'role-delete',
-            'post-list',
-            'post-create',
-            'post-edit',
-            'post-delete',
-            'user-list',
-            'user-create',
-            'user-edit',
-            'user-delete'
+            'Listar rol',
+            'Crear rol',
+            'Editar rol',
+            'Eliminar rol',
+            'Listar post',
+            'Crear post',
+            'Editar post',
+            'Eliminar post',
+            'Listar usuario',
+            'Crear usuario',
+            'Editar usuario',
+            'Eliminar usuario'
          ];
          foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
@@ -41,29 +41,30 @@ class PermissionTableSeeder extends Seeder
                $editUser = Role::create(['name' => 'Edit User']);
 
                $admin->givePermissionTo([
-                'role-list',
-                'role-create',
-                'role-edit',
-                'role-delete',
-                'post-list',
-                'post-create',
-                'post-edit',
-                'post-delete',
-                'user-list',
-                'user-create',
-                'user-edit',
-                'user-delete'
+                'Listar rol',
+                'Crear rol',
+                'Editar rol',
+                'Eliminar rol',
+                'Listar post',
+                'Crear post',
+                'Editar post',
+                'Eliminar post',
+                'Listar usuario',
+                'Crear usuario',
+                'Editar usuario',
+                'Eliminar usuario',
 
                    
                ]);
 
                $basicUser->givePermissionTo([
-                'post-list',
+                'Listar post',
             ]);
 
             $editUser->givePermissionTo([
-                'post-list',
-                'post-create' 
+                'Listar post',
+                'Crear post',
+                'Editar post',
             ]);
 
                //$admin->givePermissionTo('products.index');
