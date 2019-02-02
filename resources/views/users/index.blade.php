@@ -53,11 +53,11 @@
 </table>
 
 <!-- Aqui condicionamos si existe la cookie que la muestre, sino que muestr "No hay cookie" -->
-   @if (Cookie::get('userName') != null)
+   @if (Cookie::get('email') != null)
         Cookie:
-        {{ Cookie::get('userName')}}
+        {{ Cookie::get('email')}}
     @else
-         {{'No hay cookie'}}
+         {{'No tienes cookie!!'}}
      @endif
 
 {!! $users->render() !!}

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Inicio</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,13 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <center><h1>Bienvenido {{Auth::user()->name}}</h1></center>
+                    <br>
+                    <ul>
+                        <li><h5>Usuarios: Podras crear, editar y eliminar Usuarios.</h5></li>
+                        <li><h5>Roles: Podras crear, editar y eliminar Roles.</h5></li>
+                        <li><h5>Posts: Podras crear, editar y eliminar Posts.</h5></li>
+                    </ul>
                 </div>
             </div>
         </div>

@@ -32,9 +32,9 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = User::orderBy('id','DESC')->paginate(5);
-        $userName = cookie('userName',Auth::user()->name, 6);
+        $email = cookie('email',Auth::user()->email, 6);
         $request->session()->put('id', Auth::user()->id);
-        return response(view('users.index',compact('users'))->with('i', ($request->input('page', 1) - 1) * 5))->cookie($userName);
+        return response(view('users.index',compact('users'))->with('i', ($request->input('page', 1) - 1) * 5))->cookie($email);
             
     }
 
